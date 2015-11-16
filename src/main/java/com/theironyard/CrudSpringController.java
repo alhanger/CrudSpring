@@ -98,7 +98,7 @@ public class CrudSpringController {
     }
 
     @RequestMapping("/pm")
-    public String sendPM(HttpSession session, Model model, Integer id) {
+    public String sendPM(Model model, Integer id) {
         model.addAttribute("id", id);
         return "send-message";
     }
@@ -122,6 +122,12 @@ public class CrudSpringController {
         messages.save(newMsg);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/reply")
+    public String replyMessage(Model model, Integer id) {
+        model.addAttribute("id", id);
+        return "send-message";
     }
 
 //    @RequestMapping("/add-friend")

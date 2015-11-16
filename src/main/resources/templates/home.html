@@ -13,7 +13,11 @@
 
 <div class="messageBox">Below are your recent messages.<br>
 {{#inbox}}
-    {{content}}<br>
+    <b>{{content}}</b> from {{#sender}}{{firstName}} {{lastName}}{{/sender}}
+    <form action="reply" method="post" style="display: inline;">
+        <input type="hidden" name="id" value="{{#sender}}{{id}}{{/sender}}"/>
+        <button type="submit">Reply</button>
+    </form> <br>
 {{/inbox}}
 </div>
 <br>
