@@ -1,5 +1,8 @@
 package com.theironyard;
 
+import com.theironyard.entities.Job;
+import com.theironyard.entities.Message;
+import com.theironyard.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -128,6 +131,30 @@ public class CrudSpringController {
     public String replyMessage(Model model, Integer id) {
         model.addAttribute("id", id);
         return "send-message";
+    }
+
+    @RequestMapping("/delete-message")
+    public String deleteMessage(HttpSession session, Integer id) {
+        String username = (String) session.getAttribute("username");
+        Message deleteMsg = messages.findOneById(id);
+        User user = users.findOneByUsername(username);
+        user.inbox.remove(deleteMsg);
+
+        return "redirect:/";
+    }
+
+    @RequestMapping("/info")
+    public String personProfile(Model model, Integer id) {
+        User user = users.findOneById(id);
+
+        model.addAttribute("user", user);
+
+        return "individual";
+    }
+
+    @RequestMapping("/return")
+    public String returnHome() {
+        return "redirect:/";
     }
 
 //    @RequestMapping("/add-friend")

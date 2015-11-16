@@ -17,7 +17,11 @@
     <form action="reply" method="post" style="display: inline;">
         <input type="hidden" name="id" value="{{#sender}}{{id}}{{/sender}}"/>
         <button type="submit">Reply</button>
-    </form> <br>
+    </form>
+    <form action="delete-message" method="post" style="display: inline;">
+        <input type="hidden" name="id" value="{{id}}"/>
+        <button type="submit">Delete</button>
+    </form><br>
 {{/inbox}}
 </div>
 <br>
@@ -27,13 +31,9 @@
 <div class="people">
 {{#users}}
 {{firstName}} {{lastName}} - Age: {{age}} Location: {{location}} {{#job}}Job: {{position}} at {{company}}{{/job}}
-<form action="pm" method="post" style="display: inline;">
+<form action="info" method="post" style="display: inline;">
     <input type="hidden" name="id" value="{{id}}"/>
-    <button type="submit">Send {{firstName}} a Message</button>
-</form>
-<form action="add-friend" method="post" style="display: inline;">
-    <input type="hidden" name="id" value="{{id}}"/>
-    <button type="submit">Add {{firstName}} to your friends list.</button>
+    <button type="submit">View {{firstName}}'s Profile</button>
 </form>
 <br>
 {{/users}}

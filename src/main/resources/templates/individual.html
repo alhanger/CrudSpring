@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{#user}}
+    <meta charset="UTF-8">
+    <title>{{firstName}}'s Profile</title>
+</head>
+<body>
+<h2>{{firstName}} {{lastName}}</h2>
+<form action="pm" method="post" style="display: inline;">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <button type="submit">Send {{firstName}} a Message</button>
+</form>
+<form action="add-friend" method="post" style="display: inline;">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <button type="submit">Add {{firstName}} to your friends list.</button>
+</form> <br><br>
+<b>Location:</b> {{location}}<br><br>
+<b>Age:</b> {{age}}<br><br>
+<b>Favorite Music Genre:</b> {{music}}<br><br>
+<b>Favorite Vacation Spot:</b> {{vacation}}<br><br>
+{{#job}}
+<u><b>Employment</b></u><br>
+<b>Company:</b> {{company}}<br>
+<b>Position:</b> {{position}}<br>
+<b>Years spent at {{company}}:</b> {{yearsWorked}}
+{{/job}}
+{{/user}}
+<br><br><br>
+<form action="return" method="post">
+    <button type="submit">Return Home</button>
+</form>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.theironyard;
 
+import com.theironyard.entities.Job;
 import org.springframework.data.repository.CrudRepository;
 
 /**
