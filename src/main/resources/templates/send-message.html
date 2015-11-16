@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Message</title>
+</head>
+<body>
+{{#id}}
+<form action="send-message" method="post">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <input type="text" placeholder="Message" name="message">
+    <button type="submit">Send Message</button>
+</form>
+{{/id}}
+</body>
+</html>

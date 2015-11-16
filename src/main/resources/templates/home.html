@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+
+{{#user}}
+<h3>Welcome, {{firstName}}!</h3>
+<a href="logout">Logout</a>
+<br><br>
+
+<div class="messageBox">Below are your recent messages.<br>
+{{#inbox}}
+    {{content}}<br>
+{{/inbox}}
+</div>
+<br>
+{{/user}}
+<br>
+
+<div class="people">
+{{#users}}
+{{firstName}} {{lastName}} - Age: {{age}} Location: {{location}} {{#job}}Job: {{position}} at {{company}}{{/job}}
+<form action="pm" method="post" style="display: inline;">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <button type="submit">Send {{firstName}} a Message</button>
+</form>
+<form action="add-friend" method="post" style="display: inline;">
+    <input type="hidden" name="id" value="{{id}}"/>
+    <button type="submit">Add {{firstName}} to your friends list.</button>
+</form>
+<br>
+{{/users}}
+</div>
+
+<div class="friendsList">
+    {{#friends}}
+    {{firstName}} - {{location}}
+    {{/friends}}
+</div>
+</body>
+</html>

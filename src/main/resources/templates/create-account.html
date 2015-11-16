@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+</head>
+<body>
+<h3>Create Account</h3>
+<form action="create-account" method="post">
+    <input type="text" placeholder="Username" name="username"/><br><br>
+    <input type="password" placeholder="Password" name="password"/><br><br>
+    Please enter your first and last name.
+    <input type="text" placeholder="First Name" name="firstName"/>
+    <input type="text" placeholder="Last Name" name="lastName"/><br><br>
+    Where are you from?<br>
+    <input type="text" placeholder="Location" name="location"/><br><br>
+    How old are you?<br>
+    <input type="number" placeholder="Age" name="age"/><br><br>
+    What kind of music do you like?<br>
+    <select name="music">
+        <option name="Pop">Pop</option>
+        <option name="Country">Country</option>
+        <option name="Rock">Rock</option>
+        <option name="Classical">Classical</option>
+        <option name="Jazz">Jazz</option>
+        <option name="Blues">Blues</option>
+        <option name="Metal">Metal</option>
+        <option name="Reggae">Reggae</option>
+        <option name="Rap">Rap</option>
+    </select><br><br>
+    Where do you like go on vacation?<br>
+    <select name="vacation">
+        <option name="Beach">Beach</option>
+        <option name="Mountains">Mountains</option>
+        <option name="Lake">Lake</option>
+    </select><br><br>
+    Where do you work?<br>
+    <input type="text" placeholder="Company" name="company"/><br><br>
+    What is your position there?<br>
+    <input type="text" placeholder="Position" name="position"/><br><br>
+    How long have you worked in this position?<br>
+    <input type="number" placeholder="Number of Years" name="yearsWorked"/><br><br>
+    <button type="submit">Create Profile</button>
+</form>
+</body>
+</html>
