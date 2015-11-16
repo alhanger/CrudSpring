@@ -12,7 +12,7 @@
 <br><br>
 
 <div class="messageBox">Below are your recent messages.<br>
-{{#inbox}}
+{{#messageBox}}
     <b>{{content}}</b> from {{#sender}}{{firstName}} {{lastName}}{{/sender}}
     <form action="reply" method="post" style="display: inline;">
         <input type="hidden" name="id" value="{{#sender}}{{id}}{{/sender}}"/>
@@ -22,7 +22,11 @@
         <input type="hidden" name="id" value="{{id}}"/>
         <button type="submit">Delete</button>
     </form><br>
-{{/inbox}}
+{{/messageBox}}
+
+{{#showNext}}
+<a href="/?page={{nextPage}}">Next</a>
+{{/showNext}}
 </div>
 <br>
 {{/user}}

@@ -1,16 +1,24 @@
-package com.theironyard;
+package com.theironyard.contollers;
 
+import com.theironyard.services.JobRepository;
+import com.theironyard.services.MessageRepository;
+import com.theironyard.util.PasswordHash;
+import com.theironyard.services.UserRepository;
 import com.theironyard.entities.Job;
 import com.theironyard.entities.Message;
 import com.theironyard.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 /**
  * Created by alhanger on 11/12/15.
@@ -29,20 +37,22 @@ public class CrudSpringController {
 
 
     @RequestMapping("/")
-    public String home(Model model, HttpSession session) {
+    public String home(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+        PageRequest pr = new PageRequest(page, 5);
+
         String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+        Page<Message> temp = messages.findByReceiver(pr, user);
 
         if (username == null) {
             return "login";
         }
 
+        model.addAttribute("nextPage", page + 1);
         model.addAttribute("user", users.findOneByUsername(username));
         model.addAttribute("users", users.findAll());
-
-        if (messages.count() != 0) {
-            model.addAttribute("inbox", users.findOneByUsername(username).inbox);
-        }
-        //model.addAttribute("friends", users.findOneByName(username).friends);
+        model.addAttribute("messageBox", temp);
+        model.addAttribute("showNext", temp.hasNext());
 
         return "home";
     }
@@ -156,18 +166,6 @@ public class CrudSpringController {
     public String returnHome() {
         return "redirect:/";
     }
-
-//    @RequestMapping("/add-friend")
-//    public String addFriend(HttpSession session, Integer id) {
-//        String username = (String) session.getAttribute("username");
-//        User user1 = users.findOneByName(username);
-//        User user2 = users.findOneById(id);
-//        user1.friends.add(user2);
-//
-//        friends.save(user2);
-//
-//        return "redirect:/";
-//    }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {

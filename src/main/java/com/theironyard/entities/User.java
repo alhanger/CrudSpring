@@ -49,7 +49,4 @@ public class User {
 
     @OneToMany (mappedBy = "sender")
     public List<Message> outbox;
-
-//    @OneToMany (mappedBy = "firstUser")
-//    List<User> friends;
 }
